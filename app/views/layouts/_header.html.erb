@@ -7,8 +7,8 @@
         <% if logged_in? %>
         
          <% if current_user.try(:admin?) %>
-            <li><%= link_to "ユーザー一覧", '#' %></li>
-            <li><%= link_to "基本情報の編集", '#' %></li>
+            <li><%= link_to "ユーザー一覧", users_path %></li>
+            <li><%= link_to "基本情報の編集", edit_basic_user_path(current_user) %></li>
           <% end %>
           
           <li class="dropdown">

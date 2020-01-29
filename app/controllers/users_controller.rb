@@ -23,8 +23,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
  
+  def index
+    @user = User.all
+  end
     
-    
+  def edit_basic
+    @user = User.find(params[:id])
+  end
     
     
     
