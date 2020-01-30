@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   resources :users  do
    member do
       get 'edit_basic'
+      patch 'update_basic'
+      get 'attendances/edit_one_month'
+      patch 'attendances/update_one_month' # この行が追加対象です。
     end
+  resources :attendances  
   end 
-  
 end
