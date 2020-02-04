@@ -9,7 +9,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_inf
  
   
   def show
-    
+    @worked_sum = @attendances.where.not(started_at: nil).count
   end
 
   def new
