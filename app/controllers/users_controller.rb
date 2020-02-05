@@ -74,9 +74,6 @@ before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_inf
     params.require(:user).permit(:basic_time, :work_time)
   end  
     
-  def set_user
-    @user = User.find(params[:id])
-  end  
-    
+  
     
 end
