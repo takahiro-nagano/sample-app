@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
   before_action :set_one_month, only: :show
 
@@ -59,6 +59,12 @@ before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_inf
    end
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = "#{@user.name}のデータを削除しました。"
+    redirect_to users_url
+  end
     
     
     
