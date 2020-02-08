@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       patch 'update_basic'
       get 'attendances/edit_one_month'
       patch 'attendances/update_one_month' # この行が追加対象です。
+      get 'search'
     end
   resources :attendances  
   end 
