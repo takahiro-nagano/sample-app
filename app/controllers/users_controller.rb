@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
  
   def index
-    @users = User.paginate(page: params[:page])
+    @users = query.order(:id).page(params[:page])
   end
     
   def edit_basic
@@ -66,14 +66,7 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
     
-  def search
-        @user = User.find(params[:id])
-    if params[:name].present?
-      @users = User.where('name LIKE ?', "%#{params[:name]}%")
-    else
-      @users = User.none
-    end
-  end
+  
   
   
   
@@ -86,6 +79,14 @@ class UsersController < ApplicationController
   def basic_params
     params.require(:user).permit(:basic_time, :work_time)
   end  
+  
+   def query
+        if params[:user].present? && params[:user][:name]
+          User.where('LOWER(name) LIKE ?', "%#{params[:user][:name].downcase}%")
+        else
+          User.all
+        end
+   end
     
   
     

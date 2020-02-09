@@ -39,11 +39,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
-   def self.search(search)
-      return User.all unless search
-      User.where(['content LIKE ?', "%#{search}%"])
-   end
-  
+   
   
   
   
