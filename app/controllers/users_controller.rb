@@ -32,7 +32,9 @@ class UsersController < ApplicationController
   end
  
   def index
+    
     @users = query.order(:id).page(params[:page])
+   
   end
     
   def edit_basic
@@ -65,7 +67,14 @@ class UsersController < ApplicationController
     flash[:success] = "#{@user.name}のデータを削除しました。"
     redirect_to users_url
   end
+  
+  def search
+    @users = query.order(:id).page(params[:page])
+  end
     
+    def  index_basic_info
+      @users = query.order(:id).page(params[:page])
+    end
   
   
   
@@ -81,8 +90,10 @@ class UsersController < ApplicationController
   end  
   
    def query
+         
         if params[:user].present? && params[:user][:name]
-          User.where('LOWER(name) LIKE ?', "%#{params[:user][:name].downcase}%")
+          @users=User.where('LOWER(name) LIKE ?', "%#{params[:user][:name].downcase}%")
+         
         else
           User.all
         end

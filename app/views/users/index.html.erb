@@ -1,5 +1,16 @@
-<% provide(:title, 'All Users') %>
-<h1>ユーザー一覧</h1>
+
+<% provide(:title) %>
+
+ <% if params[:user].present?  %>
+   <h1>検索結果</h1> 
+   
+
+ <% else %>
+   <h1>ユーザーー覧</h1>
+    
+ <% end %>        
+
+
 
 <%= form_with class:"kennsaku", model: User.new, method: :get, local: true do |f| %>
   <%= f.label :name, 'ユーザー名検索' %><br>

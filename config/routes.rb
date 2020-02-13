@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   resources :users  do
    member do
+      get 'index_basic_info'
       get 'edit_basic'
       patch 'update_basic'
       get 'attendances/edit_one_month'
