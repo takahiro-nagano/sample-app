@@ -32,9 +32,7 @@ class UsersController < ApplicationController
   end
  
   def index
-    
     @users = query.order(:id).page(params[:page])
-   
   end
     
   def edit_basic
@@ -90,9 +88,8 @@ class UsersController < ApplicationController
   end  
   
    def query
-         
         if params[:user].present? && params[:user][:name]
-          @users=User.where('LOWER(name) LIKE ?', "%#{params[:user][:name].downcase}%")
+          User.where('LOWER(name) LIKE ?', "%#{params[:user][:name].downcase}%")
          
         else
           User.all
