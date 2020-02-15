@@ -1,12 +1,11 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, "login") %>
 <h1>アカウント作成</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
-      
-      <%= f.label :名前, class: "label-signup" %>
+    <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+
+    <%= f.label :名前, class: "label-signup" %>
       <%= f.text_field :name, class: "form-control" %>
 
       <%= f.label :メールアドレス, class: "label-signup" %>
@@ -20,8 +19,11 @@
 
       <%= f.label :パスワード確認, class: "label-signup" %>
       <%= f.password_field :password_confirmation, class: "form-control" %>
+      
 
-      <%= f.submit "作成", class: "btn btn-primary btn-block btn-signup" %>
+      <%= f.submit "新規作成", class: "btn btn-primary btn-block btn-login" %>
     <% end %>
+   
   </div>
 </div>
+

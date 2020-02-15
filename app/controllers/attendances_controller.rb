@@ -61,5 +61,9 @@ UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してくださ
         flash[:danger] = "編集権限がありません。"
         redirect_to(root_url)
       end  
-     end  
+     end
+     
+     
+     
+     
 end
