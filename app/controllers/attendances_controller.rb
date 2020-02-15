@@ -29,6 +29,7 @@ UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してくださ
   
  def edit_one_month
   
+  
  end
 
  def update_one_month
@@ -44,7 +45,6 @@ UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してくださ
     flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
     redirect_to attendances_edit_one_month_user_url(date: params[:date])
  end
-
 
 
 

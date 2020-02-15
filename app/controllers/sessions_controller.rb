@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
    
-
-  
   def new
     if logged_in? 
       flash[:success] = 'ログイン状態です。'
