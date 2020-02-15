@@ -32,13 +32,24 @@
   <table class="table table-bordered table-condensed table-hover" id="table-attendances">
     <thead>
       <tr>
-        <th>日付</th>
-        <th>曜日</th>
-        <th>出社</th>
-        <th>退社</th>
-        <th>在社時間</th>
-        <th>備考</th>
+        <th rowspan="2">日付</th>
+        <th rowspan="2">曜日</th>
+        <th colspan="3" class="col1">出社</th>
+        <th colspan="3" class="col2">退社</th>
+        <th rowspan="2">在社時間</th>
+        <th rowspan="2">備考</th>
       </tr>
+      <tr>
+        <th class="col3">時</th>
+        <th class="col4">分</th>
+        <th class="col5"></th>
+        <th class="col6">時</th>
+        <th class="col7">分</th>
+        <th class="col8"></th>
+        
+       
+      </tr>
+        
     </thead>
 
     <tbody>
@@ -57,20 +68,23 @@
           <td class="<%= css_class %>"><%= $days_of_the_week[day.worked_on.wday] %></td>
           
           <td><%= l(day.started_at.floor_to(15.minutes), format: :time) if day.started_at.present? %>
+          <td><%= l(day.started_at.floor_to(15.minutes), format: :times) if day.started_at.present? %>
+        <th>
           
             <% if btn_text = attendance_state(day) %>
               <%= link_to "#{btn_text}登録", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
           
-          
-          
-          </td>
+        </th>
           <td><%= l(day.finished_at.floor_to(15.minutes), format: :time) if day.finished_at.present? %></td>
+          <td><%= l(day.finished_at.floor_to(15.minutes), format: :times) if day.finished_at.present? %></td>
+        <th></th>
           <td>
             <% if day.started_at.present? && day.finished_at.present? %>
               <%= str_times = working_times(day.started_at.floor_to(15.minutes),day.finished_at.floor_to(15.minutes)) %>
               <% @total_working_times = @total_working_times.to_f + str_times.to_f %>
             <% end %>
+        
           </td>
           <td><%= day.note %></td>
         </tr>
@@ -81,13 +95,17 @@
       <tr>
         <td colspan="2">累計日数</td>
         <td colspan="2">総合勤務時間</td>
-        <td colspan="2">累計在社時間</td>
+        <td colspan="4" rowspan="2"></td>
+        
+        <td colspan="1">累計在社時間</td>
         <td rowspan="2"></td>
       </tr>
       <tr>
         <td colspan="2"><%= @attendances.count %></td>
         <td colspan="2"><%= format_basic_info(@user.work_time).to_f * @worked_sum %></td>
-        <td colspan="2"><%= format("%.2f", @total_working_times.to_f) %></td>
+       
+        
+        <td colspan="1"><%= format("%.2f", @total_working_times.to_f) %></td>
       </tr>
       
     </tfoot>    
