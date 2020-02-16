@@ -71,7 +71,7 @@
           <td><%= l(day.started_at.floor_to(15.minutes), format: :times) if day.started_at.present? %>
         <th>
           
-            <% if btn_text = attendance_state(day) %>
+            <% if btn_text = attendance_state(day) %>  
               <%= link_to "#{btn_text}登録", user_attendance_path(@user, day), method: :patch, class: "btn btn-primary btn-attendance" %>
             <% end %>
           
