@@ -11,7 +11,7 @@ User.create!( name: "Sample2 User",
               password_confirmation: "password",
               )        
 User.create!( name: "Sample3 User",
-              email: "sample2@email.com",
+              email: "sample3@email.com",
               password: "password",
               password_confirmation: "password",
               )        
